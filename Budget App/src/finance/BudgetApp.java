@@ -2,7 +2,7 @@ package finance;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//To test the new Dev on github branch
 public class BudgetApp {
 	//Variables 
 		static Scanner input = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class BudgetApp {
 			return budgetObj;
 		}//end category()
 		
-		//Collects the parameters need categroy()
+		//Collects the parameters need category()
 		public static void createCatergory() {
 			System.out.print("Enter budget catergory name: ");
 			name = input.next();
