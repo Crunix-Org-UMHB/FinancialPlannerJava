@@ -1,50 +1,50 @@
 package finance;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BudgetApp {
-	static Scanner input = new Scanner(System.in);
-	//Budget Catagories
-	public static double TOTAL_INCOME;
-	public static double SAVINGS;
-	public static double DINING_DRINKS;
-	public static double GROCERIES;
-	public static double AUTO_TRANSPORT;
-	public static double BILLS;
-	public static double OTHER;
-	
-	//Catagory percentages
-	public static double TIP;
-	public static double SP;
-	public static double DDP;
-	public static double GP;
-	public static double ATP;
-	public static double BP;
-	public static double OP;
-	
-	public static void setIncome() {
-		TOTAL_INCOME = input.nextDouble();
-	}
-	
-	public static void setPerc() {
-		SP = input.nextInt() / 100;
-		DDP = input.nextInt() / 100;
-		GP = input.nextInt() / 100;
-		ATP = input.nextInt() / 100;
-		BP = input.nextInt() / 100;
-		OP = input.nextInt() / 100;
-	}
-	
-	public void calcBudgt() {
-		SAVINGS = SP * TOTAL_INCOME;
-		DINING_DRINKS = DDP * TOTAL_INCOME;
-		GROCERIES = GP * TOTAL_INCOME;
-		AUTO_TRANSPORT = ATP * TOTAL_INCOME;
-		BILLS = BP * TOTAL_INCOME;
-		OTHER = OP * TOTAL_INCOME;
-	}
-	public static void main(String[] args) {
+	//Variables 
+		static Scanner input = new Scanner(System.in);
+		public static double TOTAL_INCOME;
+		static ArrayList<Catergories> objs = new ArrayList<Catergories>();
+		static String name;
+		static int perc;
+		
+		//Create the Categories object
+		public static Catergories category(String name, int perc, double TOTAL_INCOME) {
+			Catergories budgetObj = new Catergories(name, perc, TOTAL_INCOME);
+			return budgetObj;
+		}//end category()
+		
+		//Collects the parameters need categroy()
+		public static void createCatergory() {
+			System.out.print("Enter budget catergory name: ");
+			name = input.next();
+			System.out.print("\nEnter the percentage: ");
+			perc = input.nextInt();
+			System.out.print("Enter your total income: ");
+			TOTAL_INCOME = input.nextDouble();
+			objs.add(category(name, perc, TOTAL_INCOME));
+		}//end createCategory()
+		
+		public static void main(String[] args) {
+			System.out.print("How many categories? ");
+			int numCat = input.nextInt();
+			
+			for(int i = 0; i < numCat; i++) {
+				createCatergory();
+			}//end for
+			for(int i = 0; i < numCat; i++) {
+				Catergories get = objs.get(i);
+				System.out.println(get.getName());
+				System.out.println(get.getPerc());
+				System.out.println(get.getAmt());
+			}//end for
+			
+			
+		
+		}//end main()
 
-	}
+}//end class BudgetApp
 
-}
